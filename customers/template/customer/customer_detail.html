@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ customer.name }}</title>
+
+<style>
+/* General styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 50px 20px;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #dbeafe, #ede9fe, #f5f3ff);
+    color: #1e293b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Customer name heading */
+h1 {
+    width: 100%;
+    max-width: 750px;
+    margin: 0;
+    padding: 35px;
+    text-align: center;
+    font-size: 36px;
+    overflow-wrap: anywhere;
+    color: white;
+    background: linear-gradient(135deg, #4338ca, #7c3aed, #a855f7);
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 12px 30px rgba(79, 70, 229, 0.2);
+    letter-spacing: 0.5px;
+}
+
+/* Customer information cards */
+p {
+    width: 100%;
+    max-width: 750px;
+    margin: 0;
+    padding: 22px 30px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    transition: all 0.3s ease;
+}
+
+p:nth-of-type(1) {
+    padding-top: 30px;
+}
+
+p:last-of-type {
+    border-radius: 0 0 18px 18px;
+    padding-bottom: 30px;
+}
+
+p:hover {
+    background: #f8faff;
+    padding-left: 38px;
+}
+
+/* Field labels */
+p strong {
+    display: inline-block;
+    min-width: 100px;
+    color: #4338ca;
+    font-weight: 700;
+}
+
+/* Action links */
+body > a {
+    display: inline-block;
+    margin: 25px 5px 0;
+    padding: 13px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+/* Edit button */
+a[href*="update"] {
+    color: #047857;
+    background: #d1fae5;
+    border: 1px solid #a7f3d0;
+}
+
+a[href*="update"]:hover {
+    background: #059669;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(5, 150, 105, 0.2);
+}
+
+/* Delete button */
+a[href*="delete"] {
+    color: #dc2626;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+a[href*="delete"]:hover {
+    color: white;
+    background: #dc2626;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(220, 38, 38, 0.2);
+}
+
+/* Back to list button */
+a[href*="customer-list"] {
+    color: #4338ca;
+    background: white;
+    border: 1px solid #c7d2fe;
+}
+
+a[href*="customer-list"]:hover {
+    color: white;
+    background: #4338ca;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(67, 56, 202, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body {
+        padding: 30px 14px;
+    }
+
+    h1 {
+        padding: 27px 18px;
+        font-size: 27px;
+    }
+
+    p {
+        padding: 18px;
+        font-size: 14px;
+    }
+
+    p:hover {
+        padding-left: 23px;
+    }
+
+    p strong {
+        min-width: 85px;
+    }
+
+    body > a {
+        margin: 10px 3px 0;
+        padding: 11px 13px;
+        font-size: 12px;
+    }
+}
+</style>
+
+</head>
+<body>
+<h1>{{ customer.name }}</h1>
+<p><strong>Email:</strong> {{ customer.email }}</p>
+<p><strong>Phone:</strong> {{ customer.phone }}</p>
+<p><strong>Address:</strong> {{ customer.address }}</p>
+<p><strong>Joined:</strong> {{ customer.created_at }}</p>
+<a href="{% url 'customer-update' customer.pk %}">Edit</a> |
+<a href="{% url 'customer-delete' customer.pk %}">Delete</a> |
+<a href="{% url 'customer-list' %}">Back to List</a>
+</body>
+</html>
